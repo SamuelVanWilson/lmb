@@ -156,7 +156,9 @@ h2 {
         padding:6px 0;
     }
     .footer-grid {
-        grid-template-columns: 1fr; /* 1 kolom di mobile */
-        text-align: center; /* Konten jadi di tengah */
+        flex-direction: column;
+    }
+    .footer-col {
+        width: 100%;
     }
 }

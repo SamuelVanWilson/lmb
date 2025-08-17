@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
+    <x-alert></x-alert>
     <header>
         <div class="container">
             <a href="/" class="brand">WisataYuk</a>

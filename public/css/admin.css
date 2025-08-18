@@ -1,0 +1,161 @@
+/* === PENGATURAN DASAR ADMIN === */
+:root {
+    --admin-bg: #f8f9fa;
+    --sidebar-bg: #343a40;
+    --sidebar-text: #f8f9fa;
+    --sidebar-link-hover: #495057;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--admin-bg);
+}
+
+/* === STRUKTUR UTAMA LAYOUT === */
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+/* === SIDEBAR (Tampilan Desktop) === */
+.admin-sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+.admin-sidebar h3 {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.admin-sidebar nav a {
+    display: block;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.admin-sidebar nav a:hover {
+    background-color: var(--sidebar-link-hover);
+}
+/* === KONTEN UTAMA === */
+.admin-content {
+    flex-grow: 1; /* Mengisi sisa ruang */
+    padding: 20px;
+}
+/* === HEADER MOBILE (Tersembunyi di Desktop) === */
+.admin-header-mobile {
+    display: none; /* Sembunyi di desktop */
+    padding: 15px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+.burger-menu {
+    cursor: pointer;
+}
+.burger-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+}
+
+.content-wrapper {
+    background-color: var(--admin-bg);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+.content-header h1 { font-size: 24px; }
+
+/* --- Kartu Dashboard --- */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom di desktop */
+    gap: 20px;
+}
+.dashboard-card {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-align: center;
+}
+.dashboard-card h2 { font-size: 18px; color: #6c757d; }
+.dashboard-card .count { font-size: 32px; font-weight: bold; margin-top: 10px; }
+
+/* --- Tabel --- */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.admin-table th, .admin-table td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    text-align: left;
+}
+.admin-table thead {
+    background-color: #f8f9fa;
+}
+.admin-table .actions a, .admin-table .actions button {
+    margin-right: 5px;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.actions .edit-btn { background-color: #ffc107; } /* Kuning */
+.actions .delete-btn { background-color: #dc3545; } /* Merah */
+
+
+/* === RESPONSIVE (Tampilan Mobile) === */
+@media (max-width: 768px) {
+    .admin-header-mobile {
+        display: flex; /* Tampilkan header di mobile */
+    }
+
+    .admin-sidebar {
+        position: fixed; /* Jadi overlay */
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 1000;
+        transform: translateX(-100%); /* Sembunyikan di luar layar */
+    }
+
+    .admin-sidebar.is-open {
+        transform: translateX(0); /* Tampilkan saat menu dibuka */
+    }
+
+    .dashboard-cards { grid-template-columns: 1fr; } /* 1 kolom di mobile */
+    .content-header { flex-direction: column; gap: 15px; }
+    .admin-table, .admin-table thead, .admin-table tbody, .admin-table th, .admin-table td, .admin-table tr {
+        display: block; /* Membuat tabel menjadi vertikal */
+    }
+    .admin-table thead tr { display: none; } /* Sembunyikan header tabel */
+    .admin-table tr { border: 1px solid var(--border-color); margin-bottom: 15px; }
+    .admin-table td { border: none; border-bottom: 1px solid #eee; position: relative; padding-left: 50%; }
+    .admin-table td:before { position: absolute; top: 12px; left: 12px; width: 45%; font-weight: bold; }
+    /* Menambahkan label data untuk setiap baris */
+    .admin-table td:nth-of-type(1):before { content: "ID"; }
+    .admin-table td:nth-of-type(2):before { content: "Nama"; }
+    .admin-table td:nth-of-type(3):before { content: "Lokasi"; }
+}

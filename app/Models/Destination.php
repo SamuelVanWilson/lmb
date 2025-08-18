@@ -14,10 +14,16 @@ class Destination extends Model
         'location',
         'description',
         'image',
+        'stock',
         'ticket_price',
     ];
 
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'name';
     }
 }

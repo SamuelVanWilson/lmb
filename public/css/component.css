@@ -1,0 +1,85 @@
+/* === COMPONENTS === */
+.btn {
+display:inline-block;
+padding:10px 15px;
+border-radius:8px;
+font-weight:600;
+text-decoration:none;
+cursor:pointer;
+}
+.btn-primary { background:#0d6efd; color:#fff; }
+.btn-primary:hover { filter:brightness(.95); }
+.btn-secondary { background:#6c757d; color:#fff; }
+.btn-secondary:hover { filter:brightness(.95); }
+.btn-danger {background-color: #dc3545; color: #fff;}
+
+.card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.card img {
+    display: block; /* Mencegah spasi bawah yang tidak diinginkan */
+    width: 100%;    /* Properti esensial untuk gambar responsif */
+    height: 12em;
+    object-fit: cover;
+}
+.card-body { padding: 20px; }
+.card-body h3 { margin-bottom: 10px; }
+.card-body p { margin-bottom: 20px; color: #666; }
+
+/* --- Kartu Form (Form Card) --- */
+.form-card {
+    max-width: 500px;
+    margin: 50px auto; /* Memberi jarak atas/bawah dan otomatis di tengah */
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.form-card h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.form-card p {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #666;
+}
+
+/* --- Grup Form & Input --- */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #495057;
+}
+
+/* Kelas ini bisa dipakai untuk semua input, textarea, dan select */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* --- Link Beralih (misal: "Belum punya akun?") --- */
+.form-switch-link {
+    margin-top: 20px;
+    text-align: center;
+    color: #666;
+}

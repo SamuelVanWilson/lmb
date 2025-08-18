@@ -2,84 +2,71 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Destination;
 use Illuminate\Http\Request;
 
 class DestinationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $destinations = Destination::all();
+        return view('admin.destinations.index', compact('destinations'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.destinations.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'description' => 'required|string',
+            'ticket_price' => 'required|numeric',
+            'stock' => 'required|integer|min:0', // <-- VALIDASI BARU
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $data = $request->all();
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('destinations', 'public');
+        }
+
+        Destination::create($data);
+        return redirect()->route('admin.destinations.index')->with('success', 'Destinasi berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Destination  $destination
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Destination $destination)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Destination  $destination
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Destination $destination)
     {
-        //
+        return view('admin.destinations.edit', compact('destination'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Destination  $destination
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Destination $destination)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'description' => 'required|string',
+            'ticket_price' => 'required|numeric',
+            'stock' => 'required|integer|min:0', // <-- VALIDASI BARU
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $data = $request->all();
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('destinations', 'public');
+        }
+
+        $destination->update($data);
+        return redirect()->route('admin.destinations.index')->with('success', 'Destinasi berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Destination  $destination
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Destination $destination)
     {
-        //
+        $destination->delete();
+        return redirect()->route('admin.destinations.index')->with('success', 'Destinasi berhasil dihapus.');
     }
 }

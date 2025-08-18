@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? "WisataYuk" }}</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/component.css') }}">
 </head>
 <body>
     <x-alert></x-alert>
@@ -14,10 +15,10 @@
 
             <nav class="nav-links">
                 <a href="/">Beranda</a>
-                <a href="{{route('destinasi')}}">Destinasi</a>
+                <a href="{{route('destination')}}">Destinasi</a>
                 @auth
                     <span class="nav-balance">Saldo: Rp {{number_format(auth()->user()->balance, 0, ',', '.')}}</span>
-                    <a href="{{ route('profile') }}" class="nav-profile">{{auth()->user()->name}}</a>
+                    <a href="{{ route('profile') }}" class="nav-profile">Profile</a>
                 @else
                     <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
                 @endauth
@@ -31,7 +32,7 @@
     <div class="nav-overlay" id="navOverlay">
         <nav class="nav-overlay-menu">
             <a href="/">Beranda</a>
-            <a href="{{route('destinasi')}}">Destinasi</a>
+            <a href="{{route('destination')}}">Destinasi</a>
             @auth
                 <span class="nav-balance">Saldo: Rp {{number_format(auth()->user()->balance, 0, ',', '.')}}</span>
                 <a href="{{ route('profile') }}" class="nav-profile">{{auth()->user()->name}}</a>

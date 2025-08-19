@@ -15,7 +15,8 @@ Route::middleware(['redirectifadmin'])->group(function () {
 
     Route::middleware('auth')->group(function () {
         Route::get('/profile', [UserController::class, 'index'])->name('profile');
-        Route::post('/transactions/{destination:name}', [HomeController::class, 'store'])->name('transactions.store');
+        Route::post('/transactions/{destination:name}', [UserController::class, 'transaction'])->name('transactions.store');
+        Route::post('/destinations/{destination:name}/comments', [CommentController::class, 'store'])->name('comments.store');
     });
 
     // == RUTE AUTENTIKASI (Hanya untuk tamu) ==
